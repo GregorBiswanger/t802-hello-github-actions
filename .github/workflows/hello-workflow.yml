@@ -6,9 +6,10 @@ env:
 # Events
 on: 
     push:
-        - main
-        - 'feature/**'
-        - '!feature/old'
+        branches:
+            - main
+            - 'feature/**'
+            - '!feature/old'
     workflow_dispatch: # Vieeeeeeeel mehr Möglichkeiten....
   
 # Jobs
