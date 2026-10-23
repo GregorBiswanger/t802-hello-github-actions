@@ -7,6 +7,7 @@ on:
 jobs:
     analysis:
         runs-on: ubuntu-latest
+        environment: Production
         outputs:
             secret-message: ${{ steps.secretMessage.outputs.message }}
 
@@ -18,9 +19,15 @@ jobs:
         - name: Secret auf Datev prüfen
           env:
               GEHEIM: ${{ secrets.MY_SECRET }}
-          if: env.GEHEIM == 'I love DATEV!!'
+          if: env.GEHEIM == 'I love DATEV!'
           run: echo "Viel liebe für Datev!" 
         
+        - name: Secret auf DATEV (Production) prüfen
+          env:
+              GEHEIM: ${{ secrets.MY_SECRET }}
+          if: env.GEHEIM == 'I really love DATEV'
+          run: echo "Ganz viel liebe für DATEV! (Production Version)" 
+
         - name: Zeige GitHub Kontext
           run: echo '${{ toJson(github) }}'
 
