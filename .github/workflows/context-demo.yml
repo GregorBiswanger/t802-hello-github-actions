@@ -1,4 +1,5 @@
 name: Context demo
+run-name: ${{ github.event.inputs.environment }}
 
 on:
     push:
@@ -15,6 +16,7 @@ on:
 
 jobs:
     analysis:
+        name: Erste Analyse (${{ github.event.inputs.environment || 'Push' }})
         runs-on: ubuntu-latest
         environment: ${{ github.event.inputs.environment }}
         outputs:
